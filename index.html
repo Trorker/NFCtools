@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.6</small>
+    <small>v1.0.7</small>
 
     <hr>
 
@@ -45,7 +45,7 @@
                     for (const record of message.records) {
                         log("> Record type:  " + record.recordType);
                         log("> MIME type:    " + record.mediaType);
-                        log("> Record data:  " + record.data);
+                        log("> Record data:  " + JSON.stringify(record.data));
                         log("> Record id:    " + record.id);
                         switch (record.recordType) {
                             case "text":
