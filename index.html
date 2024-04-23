@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.4</small>
+    <small>v1.0.5</small>
 
     <hr>
 
@@ -75,6 +75,18 @@
                 }).catch(error => {
                     log(`> Write failed :-( try again: ${error}.`);
                 });
+
+                /*
+                const ndef = new NDEFReader();
+                ndef.write({ records: [
+                    { recordType: "url", data: "https://w3c.github.io/web-nfc/" },
+                    { recordType: "url", data: "https://web.dev/nfc/" }
+                ]}).then(() => {
+                    console.log("Message written.");
+                }).catch(error => {
+                    console.log(`Write failed :-( try again: ${error}.`);
+                });
+                */
             } catch (error) {
                 log("Argh! " + error);
             }
