@@ -25,6 +25,8 @@
         scanButton.addEventListener("click", async () => {
             log("User clicked scan button");
 
+            
+
             try {
                 const ndef = new NDEFReader();
                 await ndef.scan();
@@ -37,6 +39,7 @@
                 ndef.addEventListener("reading", ({ message, serialNumber }) => {
                     log(`> Serial Number: ${serialNumber}`);
                     log(`> Records: (${message.records.length})`);
+                    log(`> Message: (${message})`);
                     log(`> Message: (${JSON.stringify(message)})`);
                 });
             } catch (error) {
