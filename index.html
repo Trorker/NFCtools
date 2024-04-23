@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.3</small>
+    <small>v1.0.4</small>
 
     <hr>
 
@@ -41,10 +41,6 @@
                 });
 
                 ndef.onreading = event => {
-                    log(`> Serial Number: ${serialNumber}`);
-                    log(`> Records: (${message.records.length})`);
-                    log(`> Message: (${JSON.stringify(message.records)})`);
-
                     const message = event.message;
                     for (const record of message.records) {
                         log("> Record type:  " + record.recordType);
@@ -72,8 +68,13 @@
 
             try {
                 const ndef = new NDEFReader();
-                await ndef.write("Hello world!");
-                log("> Message written");
+                ndef.write({
+                    records: [{ recordType: "url", data: "https://ruslan-dzyuba.it" }]
+                }).then(() => {
+                    log("> Message written.");
+                }).catch(error => {
+                    log(`> Write failed :-( try again: ${error}.`);
+                });
             } catch (error) {
                 log("Argh! " + error);
             }
