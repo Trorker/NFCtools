@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.1</small>
+    <small>v1.0.2</small>
 
     <hr>
 
@@ -43,8 +43,7 @@
                 ndef.addEventListener("reading", ({ message, serialNumber }) => {
                     log(`> Serial Number: ${serialNumber}`);
                     log(`> Records: (${message.records.length})`);
-                    log(`> Message: (${message.records})`);
-                    log(`> Message: (${JSON.stringify(message)})`);
+                    log(`> Message: (${JSON.stringify(message.records)})`);
                 });
             } catch (error) {
                 log("Argh! " + error);
