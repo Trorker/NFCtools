@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.2</small>
+    <small>v1.0.3</small>
 
     <hr>
 
@@ -29,7 +29,7 @@
         scanButton.addEventListener("click", async () => {
             log("User clicked scan button");
 
-            
+
 
             try {
                 const ndef = new NDEFReader();
@@ -40,11 +40,28 @@
                     log("Argh! Cannot read data from the NFC tag. Try another one?");
                 });
 
-                ndef.addEventListener("reading", ({ message, serialNumber }) => {
+                ndef.onreading = event => {
                     log(`> Serial Number: ${serialNumber}`);
                     log(`> Records: (${message.records.length})`);
                     log(`> Message: (${JSON.stringify(message.records)})`);
-                });
+
+                    const message = event.message;
+                    for (const record of message.records) {
+                        log("> Record type:  " + record.recordType);
+                        log("> MIME type:    " + record.mediaType);
+                        log("> Record id:    " + record.id);
+                        switch (record.recordType) {
+                            case "text":
+                                // TODO: Read text record with record data, lang, and encoding.
+                                break;
+                            case "url":
+                                // TODO: Read URL record with record data.
+                                break;
+                            default:
+                            // TODO: Handle other records with record data.
+                        }
+                    }
+                };
             } catch (error) {
                 log("Argh! " + error);
             }
