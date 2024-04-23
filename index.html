@@ -9,7 +9,7 @@
 
 <body>
 
-    <small>v1.0.7</small>
+    <small>v1.0.8</small>
 
     <hr>
 
@@ -47,6 +47,10 @@
                         log("> MIME type:    " + record.mediaType);
                         log("> Record data:  " + JSON.stringify(record.data));
                         log("> Record id:    " + record.id);
+
+                        const textDecoder = new TextDecoder();
+                        log(`> URL: ${textDecoder.decode(record.data)}`);
+
                         switch (record.recordType) {
                             case "text":
                                 // TODO: Read text record with record data, lang, and encoding.
