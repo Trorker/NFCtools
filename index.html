@@ -12,7 +12,7 @@
 
     <body>
         <main class="container">
-            <small>v1.1.0</small>
+            <small>v1.1.1</small>
             <hr>
             <div role="group">
                 <button id="scanButton">Scan</button>
@@ -22,7 +22,7 @@
 
             <hr>
             <article>
-                <i id="output"></i>
+                <pre id="output"></pre>
             </article>
         </main>
     </body>
@@ -31,13 +31,11 @@
     <script>
         //https://shoelace.style/
         const log = (text) => {
-            document.getElementById("output").innerHTML += text + "<br>";
+            document.getElementById("output").innerHTML += JSON.stringify(text, null, "\t") + "<br>";
         }
 
         scanButton.addEventListener("click", async () => {
             log("User clicked scan button");
-
-
 
             try {
                 const ndef = new NDEFReader();
