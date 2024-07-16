@@ -12,12 +12,13 @@
 
     <body>
         <main class="container">
-            <small>v1.1.2</small>
+            <small>v1.1.3</small>
             <hr>
             <div role="group">
                 <button id="scanButton">Scan</button>
                 <button id="writeButton">Write</button>
-                <button id="makeReadOnlyButton" disabled>Make Read-Only</button>
+                <button id="clearButton" class="secondary">Clear</button>
+                <button id="makeReadOnlyButton" class="secondary" disabled>Make Read-Only</button>
             </div>
 
             <hr>
@@ -33,6 +34,10 @@
         const log = (text) => {
             document.getElementById("output").innerHTML += JSON.stringify(text, null, "\t") + "<br>";
         }
+
+        clearButton.addEventListener("click", async () => {
+            document.getElementById("output").innerHTML = "";
+        });
 
         scanButton.addEventListener("click", async () => {
             log("User clicked scan button");
