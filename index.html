@@ -12,7 +12,7 @@
 
     <body>
         <main class="container">
-            <small>v1.1.1</small>
+            <small>v1.1.2</small>
             <hr>
             <div role="group">
                 <button id="scanButton">Scan</button>
@@ -48,7 +48,7 @@
 
                 ndef.onreading = event => {
                     const message = event.message;
-                    console.log(message);
+                    log(message);
                     for (const record of message.records) {
                         log("> Record type:  " + record.recordType);
                         log("> MIME type:    " + record.mediaType);
