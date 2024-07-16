@@ -4,22 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NFCtools</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
 </head>
 
 <body>
 
-    <small>v1.0.10</small>
+    <body>
+        <main class="container">
+            <small>v1.1.0</small>
+            <hr>
+            <div role="group">
+                <button id="scanButton">Scan</button>
+                <button id="writeButton">Write</button>
+                <button id="makeReadOnlyButton" disabled>Make Read-Only</button>
+            </div>
 
-    <hr>
+            <hr>
+            <article>
+                <i id="output"></i>
+            </article>
+        </main>
+    </body>
 
-    <button id="scanButton">Scan</button>
-    <button id="writeButton">Write</button>
-    <button id="makeReadOnlyButton" disabled>Make Read-Only</button>
-
-    <hr>
-
-    <i id="output"></i>
 
     <script>
         //https://shoelace.style/
@@ -43,6 +50,7 @@
 
                 ndef.onreading = event => {
                     const message = event.message;
+                    console.log(message);
                     for (const record of message.records) {
                         log("> Record type:  " + record.recordType);
                         log("> MIME type:    " + record.mediaType);
@@ -72,7 +80,7 @@
             try {
                 const ndef = new NDEFReader();
                 ndef.write({
-                    records: [{ recordType: "url", data: "https://www.e-distribuzione.it/" }]
+                    records: [{ recordType: "url", data: "https://ruslan-dzyuba.it/" }]
                 }).then(() => {
                     log("> Message written.");
                 }).catch(error => {
